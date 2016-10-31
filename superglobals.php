@@ -3,7 +3,7 @@
 <title>PHP Tips and Tricks</title>
 </head>
 <body>
-<form>
+<form method = "post">
 Today is:   <input type="text" name="day"><br>
 <input type="submit" value="Submit"><br>
 </form>
@@ -45,6 +45,10 @@ echo '<br>$_SERVER[REQUEST_URI]: The URI which was given in order to access this
 //using $_GET
 echo '<h3>$_GET:</h3>The $_GET superglobal is an associative array of variables passed to the current script by using URL parameters.';
 echo '<br>The $_GET function is used to access the data entered in a form.  For example, the day entered in the form above is: ' . htmlspecialchars($_GET["day"]);
+
+//using $_POST
+echo '<h3>$_POST:</h3>The $_POST superglobal is an associative array of variables passed to the current script by using URL parameters.';
+echo '<br>The $_POST function is used to access the data posted from a form.  For example, the day entered in the form above is: ' . htmlspecialchars($_POST["day"]);
 ?>
 </body>
 </html>
