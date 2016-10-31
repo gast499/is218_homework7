@@ -3,6 +3,10 @@
 <title>PHP Tips and Tricks</title>
 </head>
 <body>
+<form>
+Today is:   <input type="text" name="day"><br>
+<input type="submit" value="Submit"><br>
+</form>
 <?php
 //using $GLOBALS
 echo '<h3>1:  $GLOBALS:</h3>Both of these variables have the same name and are printed in the same function but exist in different scopes.';
@@ -38,6 +42,9 @@ echo '<br>$_SERVER[SERVER_PORT]: The port on the server machine being used is: '
 echo '<br>$_SERVER[SCRIPT_NAME]: The current path of the script is: ' . $_SERVER['SCRIPT_NAME'];
 echo '<br>$_SERVER[REQUEST_URI]: The URI which was given in order to access this page is: ' . $_SERVER['REQUEST_URI'];
 
+//using $_GET
+echo '<h3>$_GET:</h3>The $_GET superglobal is an associative array of variables passed to the current script by using URL parameters.';
+echo '<br>The $_GET function is used to access the data entered in a form.  For example, the day entered in the form above is: ' . htmlspecialchars($_GET["day"]);
 ?>
 </body>
 </html>
