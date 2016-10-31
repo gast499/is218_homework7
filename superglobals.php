@@ -22,7 +22,7 @@ Today is:   <input type="text" name="day"><br>
 </form>
 <?php
 //using $GLOBALS
-echo '<h3>1:  $GLOBALS:</h3>Both of these variables have the same name and are printed in the same function but exist in different scopes.';
+echo '<h3>$GLOBALS:</h3>Both of these variables have the same name and are printed in the same function but exist in different scopes.';
 echo '  You can use $GLOBALS to acces the global variable with the same name.<br>';
 function test() {
     $foo = "This is the local variable.";
@@ -77,6 +77,73 @@ if(!isset($_COOKIE[$cookie_name])) {
     echo "Cookie '" . $cookie_name . "' is set!<br>";
     echo "Value is: " . $_COOKIE[$cookie_name];
 }
-?>
+
+//using $_SESSION
+echo '<h3>$_SESSION:</h3>';
+session_start(); 
+
+$sessPath   = ini_get('session.save_path'); 
+$sessCookie = ini_get('session.cookie_path'); 
+$sessName   = ini_get('session.name'); 
+$sessVar    = 'foo'; 
+
+echo '<br>sessPath: ' . $sessPath; 
+echo '<br>sessCookie: ' . $sessCookie; 
+
+echo '<hr>'; 
+
+if( !isset( $_GET['p'] ) ){ 
+    // instantiate new session var 
+    $_SESSION[$sessVar] = 'hello world'; 
+}else{ 
+    if( $_GET['p'] == 1 ){ 
+
+        // printing session value and global cookie PHPSESSID 
+        echo $sessVar . ': '; 
+        if( isset( $_SESSION[$sessVar] ) ){ 
+            echo $_SESSION[$sessVar]; 
+        }else{ 
+            echo '[not exists]'; 
+        } 
+
+        echo '<br>' . $sessName . ': '; 
+
+        if( isset( $_COOKIE[$sessName] ) ){ 
+        echo $_COOKIE[$sessName]; 
+        }else{ 
+            if( isset( $_REQUEST[$sessName] ) ){ 
+            echo $_REQUEST[$sessName]; 
+            }else{ 
+                if( isset( $_SERVER['HTTP_COOKIE'] ) ){ 
+                echo $_SERVER['HTTP_COOKIE']; 
+                }else{ 
+                echo 'problem, check your PHP settings'; 
+                } 
+            } 
+        } 
+
+    }else{ 
+
+        // destroy session by unset() function 
+        unset( $_SESSION[$sessVar] ); 
+
+        // check if was destroyed 
+        if( !isset( $_SESSION[$sessVar] ) ){ 
+            echo '<br>'; 
+            echo $sessName . ' was "unseted"'; 
+        }else{ 
+            echo '<br>'; 
+            echo $sessName . ' was not "unseted"'; 
+        } 
+
+    } 
+} 
+
+//
+?> 
+<hr> 
+<a href=superglobals.php?p=1>test 1 (printing session value)</a> 
+<br> 
+<a href=superglobals.php?p=2>test 2 (kill session)</a>
 </body>
 </html>
