@@ -1,3 +1,8 @@
+<?php
+$cookie_name = "class";
+$cookie_value = "is218";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+?>
 <html>
 <head>
 <title>Superglobals</title>
@@ -64,6 +69,14 @@ echo '<br>$_FILES[userfile][name]: The name of the uploaded file is: ' . $_FILES
 echo '<br>$_FILES[userfile][type]: The type of the uploaded file is: ' . $_FILES['userfile']['type'];
 echo '<br>$_FILES[userfile][size]: The size of the uploaded file is: ' . $_FILES['userfile']['size'];
 
+//using $_COOKIE
+echo '<h3>$_COOKIE:</h3>The $_COOKIE contains an associative array of cookies passed to the script using HTTP Cookies.  These Cookies are stored locally on the user\'s browser.<br>';
+if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+    echo "Cookie '" . $cookie_name . "' is set!<br>";
+    echo "Value is: " . $_COOKIE[$cookie_name];
+}
 ?>
 </body>
 </html>
