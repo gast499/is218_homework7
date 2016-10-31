@@ -80,6 +80,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 
 //using $_SESSION
 echo '<h3>$_SESSION:</h3>';
+echo 'Click the links below to check the session results.<br>';
 session_start(); 
 
 $sessPath   = ini_get('session.save_path'); 
@@ -139,7 +140,9 @@ if( !isset( $_GET['p'] ) ){
     } 
 } 
 
-//
+//using $_REQUEST
+echo '<h3>$_REQUEST:</h3>The $_REQUEST superglobal is an associative array that contains the contents of $_GET, $_POST, and $_COOKIE.<br>';
+echo 'The $_REQUEST superglobal contains the info entered in the form above: ' . $_REQUEST['day'];
 ?> 
 <hr> 
 <a href=superglobals.php?p=1>test 1 (printing session value)</a> 
