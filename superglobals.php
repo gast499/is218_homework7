@@ -1,11 +1,19 @@
 <html>
 <head>
-<title>PHP Tips and Tricks</title>
+<title>Superglobals</title>
 </head>
 <body>
 <form method = "post">
 Today is:   <input type="text" name="day"><br>
 <input type="submit" value="Submit"><br>
+</form>
+
+<form enctype="multipart/form-data" method="POST">
+    <!-- MAX_FILE_SIZE must precede the file input field -->
+    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+    <!-- Name of input element determines name in $_FILES array -->
+    Send this file: <input name="userfile" type="file" />
+    <input type="submit" value="Send File" />
 </form>
 <?php
 //using $GLOBALS
@@ -47,8 +55,15 @@ echo '<h3>$_GET:</h3>The $_GET superglobal is an associative array of variables 
 echo '<br>The $_GET function is used to access the data entered in a form.  For example, the day entered in the form above is: ' . htmlspecialchars($_GET["day"]);
 
 //using $_POST
-echo '<h3>$_POST:</h3>The $_POST superglobal is an associative array of variables passed to the current script by using URL parameters.';
+echo '<h3>$_POST:</h3>The $_POST superglobal is an associative array of variables passed to the current script using the HTTP POST method when using forms.';
 echo '<br>The $_POST function is used to access the data posted from a form.  For example, the day entered in the form above is: ' . htmlspecialchars($_POST["day"]);
+
+//using $_FILES
+echo '<h3>$_FILES:</h3>The $_FILES superglobal is an associative array of items uploaded to the current script.';
+echo '<br>$_FILES[userfile][name]: The name of the uploaded file is: ' . $_FILES['userfile']['name'];
+echo '<br>$_FILES[userfile][type]: The type of the uploaded file is: ' . $_FILES['userfile']['type'];
+echo '<br>$_FILES[userfile][size]: The size of the uploaded file is: ' . $_FILES['userfile']['size'];
+
 ?>
 </body>
 </html>
