@@ -143,6 +143,12 @@ if( !isset( $_GET['p'] ) ){
 //using $_REQUEST
 echo '<h3>$_REQUEST:</h3>The $_REQUEST superglobal is an associative array that contains the contents of $_GET, $_POST, and $_COOKIE.<br>';
 echo 'The $_REQUEST superglobal contains the info entered in the form above: ' . $_REQUEST['day'];
+
+//using $_ENV
+echo '<h3>$_ENV</h3>The $_ENV superglobal is an associative array of variables that has been passed to the script using the environment method.<br>';
+$username = "tmh27";
+$_ENV["username"] = $username;
+echo 'I set my own environment variable to $_ENV[username].  The result is shown below.<br>My username is ' .$_ENV["username"];
 ?> 
 <hr> 
 <a href=superglobals.php?p=1>test 1 (printing session value)</a> 
